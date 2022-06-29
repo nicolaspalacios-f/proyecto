@@ -13,7 +13,8 @@
     <script src="/webjars/jquery/jquery.min.js"></script>
     <script src="/webjars/sockjs-client/sockjs.min.js"></script>
     <script src="/webjars/stomp-websocket/stomp.min.js"></script>
-    <script src="js/header.js"></script>
+    <script src="js/header.js" type="text/babel"></script>
+    <script src="js/FirstComponent.jsx"></script>
 </head>
 
 <body>
@@ -24,10 +25,10 @@
 
         <script src="js/js.js"></script>
 
-        <div id="usuario"></div>
+        <div id="usuario" onload="darNombre()"></div>
     </div>
     <center>
-
+        
         <input type="color" id="colour" value="#fff" />
         <button onclick="colorSelector()">Submit</button>
         <button onclick="colorSelectorr('#f0f8ff')">Borrar</button>

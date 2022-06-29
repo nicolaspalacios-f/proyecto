@@ -36,10 +36,16 @@ public class WebSiteController {
     public String setName(@RequestParam(value = "name", defaultValue = "Anónimo") String name) {
         System.out.println(name);
         request.getSession().setAttribute("name", name);
-        return String.format("Hello %s!", name);
+        return String.format("Welcome %s!", name);
     }
 
     public void sessionManagement() {
         System.out.println(request.getSession(true).getId());
+    }
+
+    @GetMapping("/getname")
+    public String getName() {
+        String username = (String) request.getSession().getAttribute("name");
+        return "{\"name\":\"" + username + "\",\n";
     }
 }
