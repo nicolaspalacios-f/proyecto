@@ -74,6 +74,8 @@ class StatusComponent extends React.Component {
         }
     }
 }
+
+
 ReactDOM.render(
     <StatusComponent />,
     document.getElementById('status')
