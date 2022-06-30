@@ -9,6 +9,7 @@
     <script src="/webjars/sockjs-client/sockjs.min.js"></script>
     <script src="/webjars/stomp-websocket/stomp.min.js"></script>
     <script src="js/header.js" type="text/babel"></script>
+    <script src="js/kanvan.js" type="text/babel"></script>
     <script src="js/FirstComponent.jsx"></script>
     <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
     <script
@@ -19,31 +20,16 @@
       src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"
       crossorigin
     ></script>
+
     <link rel="stylesheet" type="text/css" href="css/main.css" />
   </head>
 
   <body class="home">
     <div id="usuario" class="titulo" onload="darNombre()"></div>
-    <br />
-    <br />
-    <br />
+    <br /><br /><br />
+
     <center>
-      <div class="container">
-        <br />
-        <div>
-          <button class="boton" onclick="redirectTablero()">
-            Crear nuevo Kanvan
-          </button>
-        </div>
-        <div>
-          <button class="boton">Mis Kanvan</button>
-        </div>
-        <div>
-          <button class="boton" onclick="logout()">Cerrar Sesion</button>
-        </div>
-        <br />
-      </div>
+      <div id="kanva">a</div>
     </center>
-    <br />
   </body>
 </html>

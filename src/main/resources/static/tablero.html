@@ -1,41 +1,35 @@
 <!DOCTYPE html>
 <html>
-
-<head>
+  <head>
     <title>TODO supply a title</title>
 
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.1/p5.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.1/addons/p5.dom.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.1/addons/p5.sound.min.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="js/FirstComponent.jsx"></script>
     <script src="/webjars/jquery/jquery.min.js"></script>
     <script src="/webjars/sockjs-client/sockjs.min.js"></script>
     <script src="/webjars/stomp-websocket/stomp.min.js"></script>
     <script src="js/header.js" type="text/babel"></script>
     <script src="js/FirstComponent.jsx"></script>
-</head>
+  </head>
 
-<body>
-
-    <h1 style="text-align:center ;font-size: 60px;"> Tablero</h1>
-    <br>
+  <body>
+    <h1 style="text-align: center; font-size: 60px">Tablero</h1>
+    <br />
     <div class="canva">
+      <script src="js/js.js"></script>
 
-        <script src="js/js.js"></script>
-
-        <div id="usuario" onload="darNombre()"></div>
+      <div id="usuario" onload="darNombre()"></div>
     </div>
     <center>
-        
-        <input type="color" id="colour" value="#fff" />
-        <button onclick="colorSelector()">Submit</button>
-        <button onclick="colorSelectorr('#f0f8ff')">Borrar</button>
-        <button onclick="borrare()">Borrar Tablero</button>
-
+      <input type="color" id="colour" value="#fff" />
+      <button onclick="colorSelector()">Submit</button>
+      <button onclick="colorSelectorr('#f0f8ff')">Borrar</button>
+      <button onclick="borrare()">Borrar Tablero</button>
     </center>
-</body>
-<link rel="stylesheet" type="text/css" href="css/css.css">
-
+  </body>
+  <link rel="stylesheet" type="text/css" href="css/css.css" />
 </html>
