@@ -22,5 +22,9 @@ function logout() {
 }
 
 function redirectTablero() {
+  window.location.href = "tablero.html";
+}
+
+function redirectKanvan() {
   window.location.href = "kanvan.html";
 }

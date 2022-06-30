@@ -7,7 +7,8 @@
 ### Resumen
 
 [![CircleCI](https://circleci.com/gh/nicolaspalacios-f/proyecto/tree/main.svg?style=svg)](https://circleci.com/gh/nicolaspalacios-f/proyecto/tree/main)
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/dd605bf92e0f4dc690bfd74d155c426b)](https://www.codacy.com/gh/nicolaspalacios-f/proyecto/dashboard?utm_source=github.com&utm_medium=referral&utm_content=nicolaspalacios-f/proyecto&utm_campaign=Badge_Grade)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/dd605bf92e0f4dc690bfd74d155c426b)](https://www.codacy.com/gh/nicolaspalacios-f/proyecto/dashboard?utm_source=github.com&utm_medium=referral&utm_content=nicolaspalacios-f/proyecto&utm_campaign=Badge_Grade)  
+link heroku:https://easykanvan.herokuapp.com/
 
 El proyecto consiste en realizar un kanban colaborativo, esto herramienta permitiria tomar apuntes y mirar el desarrollo de nuestras ideas.
 
