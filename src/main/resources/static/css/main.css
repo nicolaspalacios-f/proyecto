@@ -532,18 +532,18 @@ home*/
 
 /* Create three equal columns that floats next to each other */
 .column {
-  float: left;
-  width: 32.33%;
+  width: 28%;
   padding: 10px;
-
   margin: 2px;
   margin-left: 13px;
   background-color: rgba(170, 170, 170, 0.582);
+  display: inline-block;
 }
 
 /* Clear floats after the columns */
 .row:after {
   display: table;
+  position: relative;
 }
 
 .texto {
@@ -551,6 +551,21 @@ home*/
   flex-direction: row;
   height: 100px;
   box-sizing: border-box;
+  position: relative;
+}
+/*----------anadir postit-----------*/
+#bottonAnadir {
+  padding: 0.5rem 1rem;
+  background-color: rgb(187, 238, 235);
+  outline: none;
+  border: none;
+  width: 60%;
+  font-size: 14px;
+  border-radius: 4px;
+}
+#bottonAnadir:hover {
+  background-color: rgba(68, 68, 68, 0.616);
+  transition: 1s;
 }
 
 /*--------postit*/
@@ -567,8 +582,8 @@ body {
 }
 
 .post-it {
-  width: 250px;
-  height: 240px;
+  width: 70%;
+  height: 50%;
   position: relative;
   background: rgb(187, 238, 235);
   overflow: hidden;
