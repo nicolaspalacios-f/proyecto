@@ -27,9 +27,21 @@
   </head>
 
   <body class="home">
+    <div id="usuario" class="titulo" onload="darNombre()"></div>
     <br /><br /><br />
 
     <center>
+      <!-- modal -->
+      <div class="modal" id="todo_form">
+        <div class="header">
+          <div class="title">Añadir Post-it</div>
+          <button class="btn close-modal">&times;</button>
+        </div>
+        <div class="body">
+          <input type="text" id="todo_input" />
+          <input type="submit" value="Añadir Post-it" id="todo_submit" />
+        </div>
+      </div>
       <div id="kanva"></div>
       <div id="postit"></div>
     </center>

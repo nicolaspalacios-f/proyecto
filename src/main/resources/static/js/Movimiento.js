@@ -1,136 +1,150 @@
-import React, { useState } from "react";
-import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-import uuid from "uuid/v4";
+const postits = document.querySelectorAll(".postit");
+const todos = document.querySelectorAll(".column");
+var datos = null;
+let move = null;
+postits.forEach((postit) => {
+  postit.addEventListener("dragstart", dragStart);
+  postit.addEventListener("dragend", dragEnd);
+});
 
-//2400;
-
-class Movimiento extends React.Component {
-  constructor(props) {
-    super(props);
-    const [columnas, setColumnas] = useState(columnasBack);
-    const tareas = [
-      //conectar con base de datos
-      { id: uuid(), content: "poner 5" },
-      { id: uuid(), content: "A nicolas palacios" },
-    ];
-    const columnasBack = {
-      [uuid()]: { name: "Pendiente", items: tareas },
-      [uuid()]: {
-        name: "En proceso",
-        items: [],
-      },
-    };
-  }
-
-  onDragEnd(result, columnas, setColumnas) {
-    if (!result.destination) return;
-    const { source, destination } = result;
-    const columna = columnas[source.droppableId];
-    const copiado = [...columna.items];
-    const [removed] = copiado.splice(source.index, 1);
-    copiado.splice(destination.index, o, removed);
-    setColumnas({
-      ...columnas,
-      [source.droppableId]: {
-        ...columna,
-        items: copiado,
-      },
-    });
-  }
-  render() {
-    return (
-      <div className="app">
-        <DragDropContext
-          onDragEnd={(result) => onDragEnd(result, columnas, setColumnas)}
-        >
-          {Object.entries(columnas).map(([id, columna]) => {
-            return (
-              <div>
-                <h2>{columna.name}</h2>
-                <Droppable droppableId={id} key={id}>
-                  {(prov, snap) => {
-                    return (
-                      <div
-                        {...prov.droppableProps}
-                        ref={prov.innerRef}
-                        className="column"
-                      >
-                        {columna.items.map((item, index) => {
-                          return (
-                            <Draggable
-                              key={items.id}
-                              draggableId={item.id}
-                              index={index}
-                            >
-                              {(prov, snap) => {
-                                return (
-                                  <div
-                                    ref={prov.innerRef}
-                                    {...prov.droppableProps}
-                                    {...prov.dragHandleProps}
-                                    className="post-it"
-                                  >
-                                    {item.content}
-                                  </div>
-                                );
-                              }}
-                            </Draggable>
-                          );
-                        })}
-                        {provided.placeholder}
-                      </div>
-                    );
-                  }}
-                </Droppable>
-              </div>
-            );
-          })}
-        </DragDropContext>
-      </div>
-    );
-  }
+function dragStart() {
+  move = this;
+  console.log(move);
 }
-const rootElement = document.getElementById("kanva");
-ReactDOM.render(<Movimiento />, rootElement);
+function dragEnd() {}
 
-// const postits = document.querySelectorAll(".postit");
-// const todos = document.querySelectorAll(".column");
-// let move = null;
-// postits.forEach((postit) => {
-//   postit.addEventListener("dragstart", dragStart);
-//   postit.addEventListener("dragstart", dragEnd);
-// });
+todos.forEach((status) => {
+  status.addEventListener("dragover", dragOver);
+  status.addEventListener("dragenter", dragEnter);
+  status.addEventListener("dragout", dragOut);
+  status.addEventListener("drop", drop);
+});
 
-// function dragStart() {
-//   move = this;
-//   console.log(move);
-//   console.log("dragStart");
-// }
-// function dragEnd() {
-//   move = null;
-//   console.log("dragEnd");
-// }
+function dragOver(e) {
+  e.preventDefault();
+  //console.log("dragover");
+}
+// cuando se entre a una posicion aceptable de una columna
+function dragEnter() {}
 
-// todos.forEach((status) => {
-//   status.addEventListener("dragover", dragOver);
-//   status.addEventListener("dragover", dragEnter);
-//   status.addEventListener("dragover", dragOut);
-//   status.addEventListener("drop", drop);
-// });
+// cuando se mueve encima de una columna
+function dragOut() {}
 
-// function dragOver(e) {
-//   e.preventDefault();
-//   //console.log("dragover");
-// }
+function drop() {
+  this.style.border = "none";
 
-// function dragEnter() {
-//   console.log("dragEnter");
-// }
-// function dragOut() {
-//   console.log("dragOut");
-// }
+  this.appendChild(move);
+  console.log(this.getAttribute("id"));
+  move.setAttribute("columna", this.getAttribute("id"));
+  console.log(move.getAttribute("columna"));
+  move = null;
+}
+/* modal */
+const btns = document.querySelectorAll("[data-target-modal]");
+const close_modals = document.querySelectorAll(".close-modal");
+const overlay = document.getElementById("overlay");
 
-// function drop() {
-//   this.appendChild(move);
-//   console.log("drop");
-// }
+btns.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    document.querySelector(btn.dataset.targetModal).classList.add("active");
+    overlay.classList.add("active");
+  });
+});
+
+close_modals.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const modal = btn.closest(".modal");
+    modal.classList.remove("active");
+    overlay.classList.remove("active");
+  });
+});
+
+window.onclick = (event) => {
+  if (event.target == overlay) {
+    const modals = document.querySelectorAll(".modal");
+    modals.forEach((modal) => modal.classList.remove("active"));
+    overlay.classList.remove("active");
+  }
+};
+/* create todo  */
+const todo_submit = document.getElementById("todo_submit");
+
+todo_submit.addEventListener("click", createTodo);
+
+function createTodo() {
+  const todo_div = document.createElement("div");
+  const input_val = document.getElementById("todo_input").value;
+  const txt = document.createTextNode(input_val);
+
+  todo_div.appendChild(txt);
+  todo_div.classList.add("post-it");
+  todo_div.classList.add("postit");
+  todo_div.setAttribute("draggable", "true");
+  todo_div.setAttribute("columna", "columna_1");
+
+  /* create span */
+  const span = document.createElement("span");
+  const span_txt = document.createTextNode("\u00D7");
+  span.classList.add("close");
+  span.appendChild(span_txt);
+
+  todo_div.appendChild(span);
+  columna_1.appendChild(todo_div);
+  guardar(todo_div);
+  span.addEventListener("click", () => {
+    span.parentElement.style.display = "none";
+  });
+
+  todo_div.addEventListener("dragstart", dragStart);
+  todo_div.addEventListener("dragend", dragEnd);
+
+  document.getElementById("todo_input").value = "";
+  todo_form.classList.remove("active");
+  overlay.classList.remove("active");
+}
+
+const close_btns = document.querySelectorAll(".close");
+
+close_btns.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    btn.parentElement.style.display = "none";
+  });
+});
+
+function basedatos() {
+  const todo_div = document.createElement("div");
+  const input_val = "holiiiii";
+  const txt = document.createTextNode(input_val);
+
+  todo_div.appendChild(txt);
+  todo_div.classList.add("post-it");
+  todo_div.classList.add("postit");
+  todo_div.setAttribute("draggable", "true");
+  todo_div.setAttribute("columna", 1);
+
+  /* create span */
+  const span = document.createElement("span");
+  const span_txt = document.createTextNode("\u00D7");
+  span.classList.add("close");
+  span.appendChild(span_txt);
+
+  todo_div.appendChild(span);
+
+  datos = todo_div;
+
+  span.addEventListener("click", () => {
+    span.parentElement.style.display = "none";
+  });
+
+  todo_div.addEventListener("dragstart", dragStart);
+  todo_div.addEventListener("dragend", dragEnd);
+
+  document.getElementById("todo_input").value = "";
+  todo_form.classList.remove("active");
+  overlay.classList.remove("active");
+  console.log(datos);
+}
+function guardar(div) {
+  console.log(div);
+}
+basedatos();

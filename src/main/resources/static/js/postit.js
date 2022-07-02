@@ -13,17 +13,18 @@ class Postit extends React.Component {
   render() {
     const elemento = (
       <div id="tarea">
-        <h2>{titulo}</h2>
         <br></br>
-        <button id="bottonAnadir">Añadir postit</button>
-        <div className="post">
-          <div className="post-it" contentEditable draggable="true">
-            <li>{info}</li>
-          </div>
+        <button id="bottonAnadir" data-target-modal="#todo_form">
+          Añadir Post-it
+        </button>
+        <div class="postit post-it" draggable="true" columna="columna_1">
+          <li>{info}</li>
+          <span class="close">&times;</span>
         </div>
+        <div id="overlay"></div>
       </div>
     );
     return elemento;
   }
 }
-//ReactDOM.render(<Postit />, document.getElementById("postit"));
+ReactDOM.render(<Postit />, document.getElementById("postit"));
