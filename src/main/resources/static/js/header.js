@@ -28,3 +28,6 @@ function redirectTablero() {
 function redirectKanvan() {
   window.location.href = "kanvan.html";
 }
+function redirectHome() {
+  window.location.href = "home.html";
+}

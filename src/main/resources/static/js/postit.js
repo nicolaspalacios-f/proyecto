@@ -1,5 +1,4 @@
-var titulo = "perro";
-var info = "gato";
+var info = "Post-it inicial";
 
 class Postit extends React.Component {
   constructor(props) {

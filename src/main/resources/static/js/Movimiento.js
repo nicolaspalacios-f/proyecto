@@ -34,9 +34,7 @@ function drop() {
   this.style.border = "none";
 
   this.appendChild(move);
-  console.log(this.getAttribute("id"));
   move.setAttribute("columna", this.getAttribute("id"));
-  console.log(move.getAttribute("columna"));
   move = null;
 }
 /* modal */
@@ -101,6 +99,12 @@ function createTodo() {
   document.getElementById("todo_input").value = "";
   todo_form.classList.remove("active");
   overlay.classList.remove("active");
+  datos = todo_div;
+  var json = {
+    divHtml: datos,
+    borra: false,
+  };
+  sincro(json);
 }
 
 const close_btns = document.querySelectorAll(".close");
@@ -111,6 +115,47 @@ close_btns.forEach((btn) => {
   });
 });
 
+/*---------------stomp--------------*/
+var stompClient;
+function setup() {
+  stomp();
+}
+var colores = "#" + Math.floor(Math.random() * 16777215).toString(16);
+
+function sincro(json) {
+  stompClient.send("/topic/kanvan", {}, JSON.stringify(json));
+}
+
+function borrare() {
+  clear();
+  var json = {
+    borra: true,
+  };
+  sincro(json);
+}
+function stomp() {
+  var socket = new SockJS("/stompEndpoint");
+  stompClient = Stomp.over(socket);
+  stompClient.connect({}, function (frame) {
+    console.log(frame);
+    stompClient.subscribe("/topic/kanvan", function (event) {
+      var json = JSON.parse(event.body);
+      if (json.borra) {
+        clear();
+      } else {
+        fill(json.colorin);
+        stroke(json.colorin);
+        ellipse(json.xPos, json.yPos, 7, 7);
+      }
+    });
+  });
+}
+
+function message(json) {
+  stompClient.send("/topic/tablero", {}, JSON.stringify(json));
+}
+
+/*--------------conexion base de datos--------------*/
 function basedatos() {
   const todo_div = document.createElement("div");
   const input_val = "holiiiii";

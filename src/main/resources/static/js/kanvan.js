@@ -12,17 +12,17 @@ class StatusComponent extends React.Component {
       <div>
         <div class="contenedor">
           <div className="column" id="columna_1">
-            <h2>asdas</h2>
+            <h2>Por hacer</h2>
             <br></br>
             <div id="postit"></div>
           </div>
           <div className="column" id="columna_2">
-            <h2>asdas</h2>
+            <h2>En proceso</h2>
             <br></br>
             <div id="postit"></div>
           </div>
           <div className="column" id="columna_3">
-            <h2>asdas</h2>
+            <h2>Terminado</h2>
             <br></br>
             <div id="postit"></div>
           </div>
