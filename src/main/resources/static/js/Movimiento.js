@@ -1,5 +1,6 @@
 const postits = document.querySelectorAll(".postit");
 const todos = document.querySelectorAll(".column");
+var crear = true;
 var datos = null;
 let move = null;
 postits.forEach((postit) => {
@@ -9,7 +10,6 @@ postits.forEach((postit) => {
 
 function dragStart() {
   move = this;
-  console.log(move);
 }
 function dragEnd() {}
 
@@ -35,6 +35,14 @@ function drop() {
 
   this.appendChild(move);
   move.setAttribute("columna", this.getAttribute("id"));
+  console.log(move, "a");
+  var datos = move;
+  var json = {
+    divHtml: datos,
+    column: move.getAttribute("columna"),
+    textopost: input_val,
+  };
+  sincro(json);
   move = null;
 }
 /* modal */
@@ -70,6 +78,7 @@ const todo_submit = document.getElementById("todo_submit");
 todo_submit.addEventListener("click", createTodo);
 
 function createTodo() {
+  crear = true;
   const todo_div = document.createElement("div");
   const input_val = document.getElementById("todo_input").value;
   const txt = document.createTextNode(input_val);
@@ -88,7 +97,6 @@ function createTodo() {
 
   todo_div.appendChild(span);
   columna_1.appendChild(todo_div);
-  guardar(todo_div);
   span.addEventListener("click", () => {
     span.parentElement.style.display = "none";
   });
@@ -100,9 +108,11 @@ function createTodo() {
   todo_form.classList.remove("active");
   overlay.classList.remove("active");
   datos = todo_div;
+  console.log(datos.getAttribute("columna"), "perro");
   var json = {
     divHtml: datos,
-    borra: false,
+    column: todo_div.getAttribute("columna"),
+    textopost: input_val,
   };
   sincro(json);
 }
@@ -123,16 +133,11 @@ function setup() {
 var colores = "#" + Math.floor(Math.random() * 16777215).toString(16);
 
 function sincro(json) {
+  console.log(json.column, json.textopost, json.crear);
+  crear = false;
   stompClient.send("/topic/kanvan", {}, JSON.stringify(json));
 }
 
-function borrare() {
-  clear();
-  var json = {
-    borra: true,
-  };
-  sincro(json);
-}
 function stomp() {
   var socket = new SockJS("/stompEndpoint");
   stompClient = Stomp.over(socket);
@@ -140,56 +145,44 @@ function stomp() {
     console.log(frame);
     stompClient.subscribe("/topic/kanvan", function (event) {
       var json = JSON.parse(event.body);
-      if (json.borra) {
-        clear();
+
+      if (crear) {
+        const todo_div = document.createElement("div");
+        const txt = document.createTextNode(json.textopost);
+
+        todo_div.appendChild(txt);
+        todo_div.classList.add("post-it");
+        todo_div.classList.add("postit");
+        todo_div.setAttribute("draggable", "true");
+        todo_div.setAttribute("columna", json.column);
+
+        /* create span */
+        const span = document.createElement("span");
+        const span_txt = document.createTextNode("\u00D7");
+        span.classList.add("close");
+        span.appendChild(span_txt);
+
+        todo_div.appendChild(span);
+        columna_1.appendChild(todo_div);
+        span.addEventListener("click", () => {
+          span.parentElement.style.display = "none";
+        });
+
+        todo_div.addEventListener("dragstart", dragStart);
+        todo_div.addEventListener("dragend", dragEnd);
+
+        document.getElementById("todo_input").value = "";
+        todo_form.classList.remove("active");
+        overlay.classList.remove("active");
       } else {
-        fill(json.colorin);
-        stroke(json.colorin);
-        ellipse(json.xPos, json.yPos, 7, 7);
+        crear = true;
       }
     });
   });
 }
-
+setup();
 function message(json) {
-  stompClient.send("/topic/tablero", {}, JSON.stringify(json));
+  stompClient.send("/topic/kanvan", {}, JSON.stringify(json));
 }
 
 /*--------------conexion base de datos--------------*/
-function basedatos() {
-  const todo_div = document.createElement("div");
-  const input_val = "holiiiii";
-  const txt = document.createTextNode(input_val);
-
-  todo_div.appendChild(txt);
-  todo_div.classList.add("post-it");
-  todo_div.classList.add("postit");
-  todo_div.setAttribute("draggable", "true");
-  todo_div.setAttribute("columna", 1);
-
-  /* create span */
-  const span = document.createElement("span");
-  const span_txt = document.createTextNode("\u00D7");
-  span.classList.add("close");
-  span.appendChild(span_txt);
-
-  todo_div.appendChild(span);
-
-  datos = todo_div;
-
-  span.addEventListener("click", () => {
-    span.parentElement.style.display = "none";
-  });
-
-  todo_div.addEventListener("dragstart", dragStart);
-  todo_div.addEventListener("dragend", dragEnd);
-
-  document.getElementById("todo_input").value = "";
-  todo_form.classList.remove("active");
-  overlay.classList.remove("active");
-  console.log(datos);
-}
-function guardar(div) {
-  console.log(div);
-}
-basedatos();
