@@ -26,6 +26,11 @@ class StatusComponent extends React.Component {
             <br></br>
             <div id="postit"></div>
           </div>
+          <div className="column" id="columna_4">
+            <h2>Eliminar</h2>
+            <br></br>
+            <div id="postit"></div>
+          </div>
         </div>
       </div>
     );

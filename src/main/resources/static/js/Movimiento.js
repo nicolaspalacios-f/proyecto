@@ -35,14 +35,24 @@ function drop() {
 
   this.appendChild(move);
   move.setAttribute("columna", this.getAttribute("id"));
-  console.log(move, "a");
-  var datos = move;
+  if (!(move.getAttribute("columna") === "columna_4")) {
+    console.log(move, "a");
+    console.log(move.getAttribute("columna"));
+    datos = document.getElementById(move.getAttribute("id")).innerText;
+    console.log(datos);
+    datos = datos.slice(0, -1);
+  } else {
+    move.remove();
+  }
   var json = {
-    divHtml: datos,
     column: move.getAttribute("columna"),
+    idpostit: move.getAttribute("id"),
+    textopost: datos,
+    propi: propietario,
     accion: 1,
   };
   sincro(json);
+
   move = null;
 }
 /* modal */
@@ -101,7 +111,7 @@ function createTodo() {
   columna_1.appendChild(todo_div);
   span.addEventListener("click", () => {
     console.log(span);
-    span.parentElement.style.display = "none";
+    eliminar(span);
   });
 
   todo_div.addEventListener("dragstart", dragStart);
@@ -139,7 +149,6 @@ function setup() {
 var colores = "#" + Math.floor(Math.random() * 16777215).toString(16);
 
 function sincro(json) {
-  console.log(json.column, json.textopost, json.propi, json.accion);
   stompClient.send("/topic/kanvan", {}, JSON.stringify(json));
 }
 
@@ -157,11 +166,22 @@ function stomp() {
             crearRecibido(json);
             break;
           case 1:
-            console.log("mover");
+            console.log(json.idpostit);
+            console.log("elimina");
+            var docu = document.getElementById(json.idpostit);
+            docu.remove();
+            crearRecibido(json);
+            break;
+          case 4:
+            span.parentElement.style.display = "none";
+            break;
         }
       }
     });
   });
+}
+function eliminar(spa) {
+  spa.parentElement.remove();
 }
 function crearRecibido(json) {
   const todo_div = document.createElement("div");
@@ -172,25 +192,29 @@ function crearRecibido(json) {
   todo_div.classList.add("postit");
   todo_div.setAttribute("draggable", "true");
   todo_div.setAttribute("columna", json.column);
-  todo_div.setAttribute("id", json.idpostit);
-  /* create span */
-  const span = document.createElement("span");
-  const span_txt = document.createTextNode("\u00D7");
-  span.classList.add("close");
-  span.appendChild(span_txt);
+  if (!(todo_div.getAttribute("columna") === "columna_4")) {
+    todo_div.setAttribute("id", json.idpostit);
+    id++;
+    /* create span */
+    const span = document.createElement("span");
+    const span_txt = document.createTextNode("\u00D7");
+    span.classList.add("close");
+    span.appendChild(span_txt);
 
-  todo_div.appendChild(span);
-  columna_1.appendChild(todo_div);
-  span.addEventListener("click", () => {
-    span.parentElement.style.display = "none";
-  });
+    todo_div.appendChild(span);
+    var col = document.getElementById(json.column);
+    col.appendChild(todo_div);
+    span.addEventListener("click", () => {
+      eliminar(span);
+    });
 
-  todo_div.addEventListener("dragstart", dragStart);
-  todo_div.addEventListener("dragend", dragEnd);
+    todo_div.addEventListener("dragstart", dragStart);
+    todo_div.addEventListener("dragend", dragEnd);
 
-  document.getElementById("todo_input").value = "";
-  todo_form.classList.remove("active");
-  overlay.classList.remove("active");
+    document.getElementById("todo_input").value = "";
+    todo_form.classList.remove("active");
+    overlay.classList.remove("active");
+  }
 }
 setup();
 function message(json) {
