@@ -9,12 +9,12 @@ function changeUrl() {
     (usuario === document.getElementById("Usuario").value &&
       contrasena === document.getElementById("Password").value) ||
     (usuario2 === document.getElementById("Usuario").value &&
-      contrasena2 === document.getElementById("Password").value)
+      contrasena2 === document.getElementById("Password").value) 
   ) {
     sessionStorage.setItem("loggeado", true);
     sessionStorage.setItem("User", document.getElementById("Usuario").value);
     window.location.href = "home.html";
   } else {
     alert("Datos erroneos");
-  }
+  } 
 }
