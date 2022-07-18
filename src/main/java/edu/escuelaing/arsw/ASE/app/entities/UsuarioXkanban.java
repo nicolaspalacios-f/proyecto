@@ -13,20 +13,20 @@ import javax.persistence.Table;
 @Table(name = "usuarioXkanban")
 public class UsuarioXkanban {
     @EmbeddedId
-    public manyMoto id;
+    public ManyMoto id;
 
     public UsuarioXkanban() {
     }
 
-    public UsuarioXkanban(manyMoto id) {
+    public UsuarioXkanban(ManyMoto id) {
         this.id = id;
     }
 
-    public manyMoto getId() {
+    public ManyMoto getId() {
         return id;
     }
 
-    public void setId(manyMoto id) {
+    public void setId(ManyMoto id) {
         this.id = id;
     }
 
@@ -47,14 +47,14 @@ public class UsuarioXkanban {
     }
 
     public UsuarioXkanban(Usuario idUsuario, Kanban idKanban) {
-        this.id = new manyMoto(idUsuario, idKanban);
+        this.id = new ManyMoto(idUsuario, idKanban);
 
     }
 
 }
 
 @Embeddable
-class manyMoto implements Serializable {
+class ManyMoto implements Serializable {
     @ManyToOne
     @JoinColumn(name = "idUsuario", nullable = false)
     private Usuario idUsuario;
@@ -62,10 +62,10 @@ class manyMoto implements Serializable {
     @JoinColumn(name = "idKanban", nullable = false)
     private Kanban idKanban;
 
-    public manyMoto() {
+    public ManyMoto() {
     }
 
-    public manyMoto(Usuario idUsuario, Kanban idKanban) {
+    public ManyMoto(Usuario idUsuario, Kanban idKanban) {
         this.idUsuario = idUsuario;
         this.idKanban = idKanban;
     }
