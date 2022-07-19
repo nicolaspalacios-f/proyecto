@@ -10,6 +10,7 @@ import edu.escuelaing.arsw.ASE.app.entities.Kanban;
 import edu.escuelaing.arsw.ASE.app.repository.RepositoryKanban;
 
 @Service
+//
 public class ServicesKanban {
     @Autowired
     private RepositoryKanban repositoryKanban;
