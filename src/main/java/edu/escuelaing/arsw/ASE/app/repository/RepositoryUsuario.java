@@ -11,6 +11,6 @@ import edu.escuelaing.arsw.ASE.app.entities.Usuario;
 
 @Repository
 public interface RepositoryUsuario extends JpaRepository<Usuario, Long> {
-    @Query("select c from Usuario c where nombre_usuario=:nombre")
-    Optional<Usuario> getUsuarioPorNombre(@Param("nombre") String nombre);
+    @Query("select c from Usuario c where nombre_usuario=:nombre and clave_usuario=:clave")
+    Optional<Usuario> getUsuarioPorNombre(@Param("nombre") String nombre, @Param("clave") String clave);
 }

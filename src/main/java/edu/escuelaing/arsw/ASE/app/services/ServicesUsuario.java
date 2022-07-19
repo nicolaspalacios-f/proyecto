@@ -30,7 +30,7 @@ public class ServicesUsuario {
         return repositoryUsuario.findById(id);
     }
 
-    public Optional<Usuario> findByUsername(String username) {
-        return repositoryUsuario.getUsuarioPorNombre(username);
+    public Optional<Usuario> getUsuarioPorNombre(String username, String password) {
+        return repositoryUsuario.getUsuarioPorNombre(username, password);
     }
 }

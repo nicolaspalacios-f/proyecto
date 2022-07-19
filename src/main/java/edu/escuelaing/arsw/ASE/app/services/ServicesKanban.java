@@ -30,4 +30,8 @@ public class ServicesKanban {
     public Optional<Kanban> findById(Long id) {
         return repositoryKanban.findById(id);
     }
+
+    public Optional<Kanban> setnombreKanban(String username) {
+        return repositoryKanban.setnombreKanban(username);
+    }
 }

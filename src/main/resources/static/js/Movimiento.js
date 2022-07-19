@@ -40,7 +40,7 @@ function drop() {
     console.log(move.getAttribute("columna"));
     datos = document.getElementById(move.getAttribute("id")).innerText;
     console.log(datos);
-    datos = datos.slice(0, -1);
+
   } else {
     move.remove();
   }
@@ -85,7 +85,9 @@ window.onclick = (event) => {
 /* create todo  */
 const todo_submit = document.getElementById("todo_submit");
 
+var id_kanban=document.getElementById("id_kanban").value;
 todo_submit.addEventListener("click", createTodo);
+//fetch("api/postit/id?id_kanban="+id_kanban) )
 var id = 0;
 function createTodo() {
   const todo_div = document.createElement("div");
@@ -104,7 +106,7 @@ function createTodo() {
   const span = document.createElement("span");
   const span_txt = document.createTextNode("\u00D7");
   span.classList.add("close");
-  span.appendChild(span_txt);
+  //span.appendChild(span_txt);
   span.setAttribute("className", "acaa");
 
   todo_div.appendChild(span);
@@ -199,7 +201,7 @@ function crearRecibido(json) {
     const span = document.createElement("span");
     const span_txt = document.createTextNode("\u00D7");
     span.classList.add("close");
-    span.appendChild(span_txt);
+    //span.appendChild(span_txt);
 
     todo_div.appendChild(span);
     var col = document.getElementById(json.column);
@@ -222,3 +224,12 @@ function message(json) {
 }
 
 /*--------------conexion base de datos--------------*/
+
+function save(json){
+  var column = json.column;
+  var idpostit = json.idpostit;
+  var textopost = json.textopost;
+  var propi = json.propi;
+  var accion = 1;
+  
+}

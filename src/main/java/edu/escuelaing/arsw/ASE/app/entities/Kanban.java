@@ -10,15 +10,19 @@ public class Kanban {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column(name = "nombreKanban", nullable = false)
-    private String usuario;
+    @Column(name = "nombre_kanban", nullable = false)
+    private String nombre_kanban;
 
     public Kanban() {
     }
 
-    public Kanban(long id, String usuario) {
+    public Kanban(String nombre_kanban) {
+        this.nombre_kanban = nombre_kanban;
+    }
+
+    public Kanban(long id, String nombre_kanban) {
         this.id = id;
-        this.usuario = usuario;
+        this.nombre_kanban = nombre_kanban;
     }
 
     public long getId() {
@@ -29,12 +33,12 @@ public class Kanban {
         this.id = id;
     }
 
-    public String getUsuario() {
-        return usuario;
+    public String getnombre_kanban() {
+        return nombre_kanban;
     }
 
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
+    public void setnombre_kanban(String nombre_kanban) {
+        this.nombre_kanban = nombre_kanban;
     }
 
 }

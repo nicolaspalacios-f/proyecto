@@ -29,4 +29,8 @@ public class ServicesPostit {
     public Optional<Postit> findById(Long id) {
         return repositoryPostit.findById(id);
     }
+
+    public Optional<Postit> getMaxId(Long id) {
+        return repositoryPostit.getMaxId(id);
+    }
 }

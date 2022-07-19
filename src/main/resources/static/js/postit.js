@@ -1,4 +1,4 @@
-var info = "Post-it inicial";
+var info = "Elimina el postit para iniciar";
 
 class Postit extends React.Component {
   constructor(props) {
@@ -18,7 +18,7 @@ class Postit extends React.Component {
         </button>
         <div class="postit post-it" draggable="true" columna="columna_1">
           <li>{info}</li>
-          <span class="close">&times;</span>
+          
         </div>
         <div id="overlay"></div>
       </div>
