@@ -10,7 +10,7 @@ public class Kanban {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column(name = "nombre_kanban", nullable = false)
+    @Column(name = "nombre_kanban", nullable = true)
     private String nombre_kanban;
 
     public Kanban() {

@@ -30,7 +30,7 @@ public class ServicesPostit {
         return repositoryPostit.findById(id);
     }
 
-    public Optional<Postit> getMaxId(Long id) {
-        return repositoryPostit.getMaxId(id);
+    public List<Postit> getAllByKanban(Long id) {
+        return repositoryPostit.getAllByKanban(id);
     }
 }

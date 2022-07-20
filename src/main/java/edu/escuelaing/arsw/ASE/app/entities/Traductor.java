@@ -1,35 +1,20 @@
 package edu.escuelaing.arsw.ASE.app.entities;
 
-import javax.persistence.*;
+public class Traductor {
 
-@Entity
-@Table(name = "postit")
-public class Postit {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column(name = "columna", nullable = false)
     private String columna;
-    @Column(name = "informacion", nullable = true)
     private String informacion;
-    @ManyToOne
-    @JoinColumn(name = "idKanban", nullable = false)
-    private Kanban idKanban;
+    private long idKanban;
 
-    public Postit() {
-    }
-
-    public Postit(long id, String columna, String informacion, Kanban idKanban) {
+    public Traductor(long id, String columna, String informacion, long idKanban) {
         this.id = id;
         this.columna = columna;
         this.informacion = informacion;
         this.idKanban = idKanban;
     }
 
-    public Postit(String columna, String informacion, Kanban idKanban) {
-        this.columna = columna;
-        this.informacion = informacion;
-        this.idKanban = idKanban;
+    public Traductor() {
     }
 
     public long getId() {
@@ -56,11 +41,11 @@ public class Postit {
         this.informacion = informacion;
     }
 
-    public Kanban getIdKanban() {
+    public long getIdKanban() {
         return idKanban;
     }
 
-    public void setIdKanban(Kanban idKanban) {
+    public void setIdKanban(long idKanban) {
         this.idKanban = idKanban;
     }
 

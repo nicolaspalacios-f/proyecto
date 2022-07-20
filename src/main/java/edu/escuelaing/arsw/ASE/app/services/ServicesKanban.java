@@ -1,5 +1,6 @@
 package edu.escuelaing.arsw.ASE.app.services;
 
+import java.io.Console;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,6 +17,7 @@ public class ServicesKanban {
     private RepositoryKanban repositoryKanban;
 
     public Kanban create(Kanban kanban) {
+
         return repositoryKanban.save(kanban);
     }
 
@@ -31,7 +33,8 @@ public class ServicesKanban {
         return repositoryKanban.findById(id);
     }
 
-    public Optional<Kanban> setnombreKanban(String username) {
-        return repositoryKanban.setnombreKanban(username);
+    public Optional<Kanban> findByName(String nombre_kanban) {
+        return repositoryKanban.findByName(nombre_kanban);
     }
+
 }

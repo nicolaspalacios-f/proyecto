@@ -1,4 +1,4 @@
-var info = "Elimina el postit para iniciar";
+var info = "";
 
 class Postit extends React.Component {
   constructor(props) {
@@ -13,17 +13,12 @@ class Postit extends React.Component {
     const elemento = (
       <div id="tarea">
         <br></br>
-        <button id="bottonAnadir" data-target-modal="#todo_form">
-          Añadir Post-it
-        </button>
         <div class="postit post-it" draggable="true" columna="columna_1">
           <li>{info}</li>
-          
         </div>
-        <div id="overlay"></div>
       </div>
     );
-    return elemento;
+    return info != "" ? elemento : null;
   }
 }
 ReactDOM.render(<Postit />, document.getElementById("postit"));
