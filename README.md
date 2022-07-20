@@ -27,7 +27,7 @@ COMO usuario QUIERO iniciar sesion PARA QUE pueda acceder a mi cuenta y ver mis 
 
 COMO usuario QUIERO ver mis kanban PARA poder elegir a cual de proyectos quiero ver.
 
-- Criterio de aceptacion: - Debe aparecer los participantes de los kanban. - Debe mostrar el nombre y ultima fecha de modificado.
+- Criterio de aceptacion:  - Debe mostrar el nombre del kanban.
 
 COMO usuario QUIERO crear kanbans PARA llevar un registro de mis ideas.
 
@@ -39,4 +39,4 @@ COMO dueño del kanban QUIERO ver los participantes PARA poder llevar control de
 
 COMO dueño del kanban QUIERO invitar participantes PARA que puedan colaborar en mi kanban.
 
-- Criterio de aceptacion: - Debe generar un link de invitacion. - Debo poder eliminar acceso a un kanban.
+- Criterio de aceptacion: - Debe poderse invitar a alguien. - Debo poder eliminar acceso a un kanban.
