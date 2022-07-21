@@ -12,7 +12,7 @@
     <script src="js/kanvan.js" type="text/babel"></script>
     <script src="js/postit.js" type="text/babel"></script>
     <script src="js/Movimiento.js" type="text/babel"></script>
-    <script src="js/FirstComponent.jsx"></script>
+    <script src="js/misKanvan.js"></script>
     <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
     <script
       src="https://unpkg.com/react@16/umd/react.development.js"
@@ -26,7 +26,7 @@
     <link rel="stylesheet" type="text/css" href="css/main.css" />
   </head>
 
-  <body class="home">
+  <body class="home" onload="getNames()">
     <div id="usuario" class="titulo" onload="darNombre()"></div>
     <br /><br /><br />
 
@@ -45,7 +45,9 @@
       <div id="kanva"></div>
       <div id="postit"></div>
       <button onclick="redirectHome()" class="boton">Volver</button>
-      <button onclick="" class="boton">Guardar</button>
+      <select onchange="invitar()" class="boton" id="subjects">
+        <option hidden value="Invitar a alguien">Invitar a alguien</option>
+      </select>
     </center>
   </body>
 </html>

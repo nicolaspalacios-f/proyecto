@@ -1,5 +1,6 @@
 package edu.escuelaing.arsw.ASE.app.rest;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.websocket.server.PathParam;
@@ -7,6 +8,7 @@ import javax.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,11 +35,20 @@ public class RestUsuarioXKanban {
     @PostMapping("/crearUsuarioxKanban") // Crear un usuario en una columna de un kanban
     private ResponseEntity<UsuarioXkanban> crearUsuarioxKanban(@PathParam("id_usuario") Long id_usuario,
             @PathParam("id_kanban") Long id_kanban) {
+        try {
+            Usuario usuario = servicesUsuario.findById(id_usuario).get();
+            Kanban kanban = servicesKanban.findById(id_kanban).get();
+            UsuarioXkanban usuarioXkanban = new UsuarioXkanban(usuario, kanban);
+            return ResponseEntity.ok(servicesUsuarioXKanban.create(usuarioXkanban));
+        } catch (Exception e) {
+            return ResponseEntity.ok(null);
+        }
 
-        Usuario usuario = servicesUsuario.findById(id_usuario).get();
-        Kanban kanban = servicesKanban.findById(id_kanban).get();
-        UsuarioXkanban usuarioXkanban = new UsuarioXkanban(usuario, kanban);
-        return ResponseEntity.ok(servicesUsuarioXKanban.create(usuarioXkanban));
+    }
+
+    @GetMapping("/findAll") // Busca todos los kanbans
+    private ResponseEntity<List<Usuario>> findAll() {
+        return ResponseEntity.ok(servicesUsuario.findAll());
     }
 
 }
