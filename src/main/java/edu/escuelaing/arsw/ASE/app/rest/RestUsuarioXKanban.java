@@ -47,8 +47,8 @@ public class RestUsuarioXKanban {
     }
 
     @GetMapping("/findAll") // Busca todos los kanbans
-    private ResponseEntity<List<Usuario>> findAll() {
-        return ResponseEntity.ok(servicesUsuario.findAll());
+    private ResponseEntity<List<UsuarioXkanban>> findAll() {
+        return ResponseEntity.ok(servicesUsuarioXKanban.findAll());
     }
 
 }
