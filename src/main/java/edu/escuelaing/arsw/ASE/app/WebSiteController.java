@@ -18,20 +18,22 @@ public class WebSiteController {
     @Resource
     private HttpServletRequest request;
 
+    /**
+     * Main method
+     * 
+     * @param args
+     */
     public static void main(String[] args) {
         SpringApplication.run(WebSiteController.class, args);
     }
 
-    @GetMapping("/status")
-    public String status() {
-        sessionManagement();
-        String name = (String) request.getSession().getAttribute("name");
-        return "{\"status\":\"Greetings from Spring Boot "
-                + name + ". " + java.time.LocalDate.now() + ", "
-                + java.time.LocalTime.now()
-                + ". " + "The server is Runnig!\"}";
-    }
-
+    /**
+     * Asignacion del nombre
+     * 
+     * @param nombre nombre a setear
+     * 
+     * @return String.format("Welcome %s!", name) String con el nombre
+     */
     @GetMapping("/setname")
     public String setName(@RequestParam(value = "name", defaultValue = "Anónimo") String name) {
         System.out.println(name);
@@ -39,10 +41,18 @@ public class WebSiteController {
         return String.format("Welcome %s!", name);
     }
 
+    /**
+     * Metodo que muestra el id de la session
+     */
     public void sessionManagement() {
         System.out.println(request.getSession(true).getId());
     }
 
+    /**
+     * Obtencion del nombre
+     * 
+     * @return String nombre del usuario
+     */
     @GetMapping("/getname")
     public String getName() {
         String username = (String) request.getSession().getAttribute("name");

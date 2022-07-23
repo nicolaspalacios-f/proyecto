@@ -49,7 +49,6 @@ class StatusComponent extends React.Component {
                 overlay.classList.remove("active");
               }
             }
-            console.log(data1);
             Array.from(data1).forEach((postit) => {
               crearRecibidoo(postit);
             });

@@ -20,32 +20,71 @@ public class Usuario {
     public Usuario() {
     }
 
+    /**
+     * Constructor de la clase Usuario con nombre de usuario , id y clave
+     * 
+     * @param usuario: nombre del usuario
+     * 
+     * @param clave:   clave del usuario
+     * 
+     * @param id       id del usuario
+     */
     public Usuario(long id, String usuario, String clave) {
         this.id = id;
         this.usuario = usuario;
         this.clave = clave;
     }
 
+    /**
+     * getter del id del usuario
+     * 
+     * @return id del usuario
+     */
     public long getId() {
         return id;
     }
 
+    /**
+     * setter del id del usuario
+     * 
+     * @param id id del usuario
+     */
     public void setId(long id) {
         this.id = id;
     }
 
+    /**
+     * getter del nombre del usuario
+     * 
+     * @return nombre del usuario
+     */
     public String getUsuario() {
         return usuario;
     }
 
+    /**
+     * setter del nombre del usuario
+     * 
+     * @param usuario nombre del usuario
+     */
     public void setUsuario(String usuario) {
         this.usuario = usuario;
     }
 
+    /**
+     * getter de la clave del usuario
+     * 
+     * @return clave del usuario
+     */
     public String getClave() {
         return clave;
     }
 
+    /**
+     * setter de la clave del usuario
+     * 
+     * @param clave clave del usuario
+     */
     public void setClave(String clave) {
         this.clave = clave;
     }

@@ -23,6 +23,13 @@ public class RestUsuarios {
     @Autowired
     private ServicesUsuario servicesUsuario;
 
+    /**
+     * Metodo que permite obtener un usuario por nombre de usuario
+     * 
+     * @param nombre_usuario nombre del usuario
+     * 
+     * @return ResponseEntity<Usuario>
+     */
     @PostMapping("/login")
     private ResponseEntity<Optional<Usuario>> getUsuarioPorNombre(@PathParam("nombre_usuario") String nombre_usuario,
             @PathParam("clave_usuario") String clave_usuario) {
@@ -30,7 +37,12 @@ public class RestUsuarios {
         return ResponseEntity.ok(usuario);
     }
 
-    @GetMapping("/findAll") // Busca todos los kanbans
+    /**
+     * Metodo que permite obtener todos los usuarios
+     * 
+     * @return ResponseEntity<List<Usuario>>
+     */
+    @GetMapping("/findAll")
     private ResponseEntity<List<Usuario>> findAll() {
         return ResponseEntity.ok(servicesUsuario.findAll());
     }

@@ -28,6 +28,13 @@ public class RestPostits {
     @Autowired
     private ServicesKanban servicesKanban;
 
+    /**
+     * Metodo que permite obtener todos los postits por un kanban
+     * 
+     * @param id_kanban id del kanban
+     * 
+     * @return ResponseEntity<Postit>
+     */
     @GetMapping("/getAllByKanban")
     private ResponseEntity<List<Postit>> getAllByKanban(@PathParam("id_kanban") String id_kanban) {
         Long id = Long.parseLong(id_kanban);
@@ -36,6 +43,13 @@ public class RestPostits {
         return ResponseEntity.ok(usuario);
     }
 
+    /**
+     * Metodo que permite crear un nuevo postit
+     * 
+     * @param postit postit a crear
+     * 
+     * @return ResponseEntity<Postit>
+     */
     @PostMapping("/guardarEnBase")
     private ResponseEntity<Postit> guardarEnBase(@RequestBody Traductor postit) {
         Postit postit2 = new Postit(postit.getColumna(), postit.getInformacion(),
@@ -44,6 +58,13 @@ public class RestPostits {
         return ResponseEntity.ok(servicesPostit.create(postit2));
     }
 
+    /**
+     * Metodo que permite update a un postit
+     * 
+     * @param postit postit a updatear
+     * 
+     * @return ResponseEntity<Postit>
+     */
     @PostMapping("/updateEnBase")
     private ResponseEntity<Postit> updateEnBase(@RequestBody Traductor postit) {
 
@@ -53,6 +74,13 @@ public class RestPostits {
         return ResponseEntity.ok(servicesPostit.create(postit2));
     }
 
+    /**
+     * Metodo que permite eliminar un postit
+     * 
+     * @param postit postit postit a eliminar
+     * 
+     * @return ResponseEntity<Postit>
+     */
     @DeleteMapping("/eliminarEnBase")
     private void eliminarEnBase(@RequestBody Traductor postit) {
         Postit postit2 = new Postit(postit.getId(), postit.getColumna(), postit.getInformacion(),

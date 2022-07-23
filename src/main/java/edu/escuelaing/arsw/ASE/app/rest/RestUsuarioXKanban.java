@@ -32,7 +32,14 @@ public class RestUsuarioXKanban {
     @Autowired
     private ServicesKanban servicesKanban;
 
-    @PostMapping("/crearUsuarioxKanban") // Crear un usuario en una columna de un kanban
+    /**
+     * Metodo que permite crear un usuarioxkanban
+     * 
+     * @param usuarioxkanban usuarioxkanban a crear
+     * 
+     * @return ResponseEntity<UsuarioXkanban>
+     */
+    @PostMapping("/crearUsuarioxKanban")
     private ResponseEntity<UsuarioXkanban> crearUsuarioxKanban(@PathParam("id_usuario") Long id_usuario,
             @PathParam("id_kanban") Long id_kanban) {
         try {
@@ -46,7 +53,12 @@ public class RestUsuarioXKanban {
 
     }
 
-    @GetMapping("/findAll") // Busca todos los kanbans
+    /**
+     * Metodo que permite encontrar todos los usuariosxkanban
+     * 
+     * @return ResponseEntity<List<UsuarioXkanban>>
+     */
+    @GetMapping("/findAll")
     private ResponseEntity<List<UsuarioXkanban>> findAll() {
         return ResponseEntity.ok(servicesUsuarioXKanban.findAll());
     }
