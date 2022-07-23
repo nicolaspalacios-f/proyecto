@@ -58,6 +58,34 @@ Para ejecutarlo, se debe hacer de la siguiente forma
 $ mvn spring-boot:run
 ```
 
+Al ingresar a la aplicación, vemos el login, se tienen 2 usuarios en base de datos, user y admin, cuya clave es el mismo nombre de cada una.
+<img src="imagen/login.png">
+
+Una vez ingresado veremos 3 opciones, crear un kanban, mis kanban y cerrar sesión.
+<img src="imagen/home.png">
+
+Si damos click a la opción crear kanban saldrá una opción para elegir el nombre.
+<img src="imagen/nombre.png">
+Una vez elegido el nombre y dado en aceptar, saldrá el kanban.
+<img src="imagen/kanban.png">
+Dentro del kanban veremos 4 columnas, en la primera hay un botón el cual nos permitirá añadir un nuevo postit.
+<img src="imagen/nuevo.png">
+Una vez dado en Añadir Post-it saldrá el postit creado. Si queremos mover un Post-it, se debe mantener click sobre el y desplazarlo donde queremos, para eliminar un Post-it tendremos que desplazarlo a la columna eliminar.
+<img src="imagen/eliminar.png">
+Para invitar a alguien a participar daremos al boton invitar a alguien, en el cual nos saldrán las personas disponibles para invitar.
+
+<img src="imagen/invitar.png">
+  
+    
+      
+En la segunda opción de nuestro menu, aparecerán los Kanban que hemos creado, si les damos click encima ingresaremos a ese Kanban
+
+<img src="imagen/miskanban.png">
+
+Finalmente la ultima opción es cerrar sesión, al darle click regresaremos al login.
+
+<img src="imagen/login.png">
+
 ### Estructura de Archivos
 
     .
@@ -129,3 +157,8 @@ $ mvn spring-boot:run
 #### Diagrama de Repository.
 
 <img src='imagen/diagrama repository.png'>
+
+### Reporte de pruebas.
+
+Se realizaron test de los 4 servicios de la aplicacion, estos representan lo mas importante de esta.
+<img src="imagen/test.png">
