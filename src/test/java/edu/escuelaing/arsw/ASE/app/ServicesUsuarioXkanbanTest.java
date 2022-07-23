@@ -16,18 +16,10 @@ import org.mockito.MockitoAnnotations;
 import edu.escuelaing.arsw.ASE.app.entities.Kanban;
 import edu.escuelaing.arsw.ASE.app.entities.Usuario;
 import edu.escuelaing.arsw.ASE.app.entities.UsuarioXkanban;
-import edu.escuelaing.arsw.ASE.app.repository.RepositoryKanban;
-import edu.escuelaing.arsw.ASE.app.repository.RepositoryUsuario;
 import edu.escuelaing.arsw.ASE.app.repository.RepositoryUsuarioXKanban;
 import edu.escuelaing.arsw.ASE.app.services.ServicesUsuarioXKanban;
 
 public class ServicesUsuarioXkanbanTest {
-
-    @Mock
-    private RepositoryKanban repoKanban;
-
-    @Mock
-    private RepositoryUsuario repoUsuario;
 
     @Mock
     private RepositoryUsuarioXKanban repoUsuarioXKanban;

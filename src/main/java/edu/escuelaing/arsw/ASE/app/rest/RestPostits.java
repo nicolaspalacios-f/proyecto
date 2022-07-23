@@ -1,7 +1,6 @@
 package edu.escuelaing.arsw.ASE.app.rest;
 
 import java.util.List;
-import java.util.Optional;
 
 import javax.websocket.server.PathParam;
 

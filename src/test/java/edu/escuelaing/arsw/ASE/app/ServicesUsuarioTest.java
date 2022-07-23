@@ -14,14 +14,10 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import edu.escuelaing.arsw.ASE.app.entities.Usuario;
-import edu.escuelaing.arsw.ASE.app.repository.RepositoryPostit;
 import edu.escuelaing.arsw.ASE.app.repository.RepositoryUsuario;
 import edu.escuelaing.arsw.ASE.app.services.ServicesUsuario;
 
 public class ServicesUsuarioTest {
-
-    @Mock
-    private RepositoryPostit repoPostit;
 
     @Mock
     private RepositoryUsuario repoUsuario;

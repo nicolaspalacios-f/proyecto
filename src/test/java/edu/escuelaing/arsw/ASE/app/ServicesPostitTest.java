@@ -5,7 +5,6 @@ import org.mockito.MockitoAnnotations;
 
 import edu.escuelaing.arsw.ASE.app.entities.Kanban;
 import edu.escuelaing.arsw.ASE.app.entities.Postit;
-import edu.escuelaing.arsw.ASE.app.repository.RepositoryKanban;
 import edu.escuelaing.arsw.ASE.app.repository.RepositoryPostit;
 import edu.escuelaing.arsw.ASE.app.services.ServicesPostit;
 
@@ -21,8 +20,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 
 public class ServicesPostitTest {
-    @Mock
-    private RepositoryKanban repoKanban;
 
     @Mock
     private RepositoryPostit repoPostit;

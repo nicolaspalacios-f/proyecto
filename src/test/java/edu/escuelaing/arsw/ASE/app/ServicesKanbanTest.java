@@ -17,8 +17,6 @@ import edu.escuelaing.arsw.ASE.app.entities.Kanban;
 import edu.escuelaing.arsw.ASE.app.entities.Usuario;
 import edu.escuelaing.arsw.ASE.app.repository.RepositoryKanban;
 import edu.escuelaing.arsw.ASE.app.repository.RepositoryPostit;
-import edu.escuelaing.arsw.ASE.app.repository.RepositoryUsuario;
-import edu.escuelaing.arsw.ASE.app.repository.RepositoryUsuarioXKanban;
 import edu.escuelaing.arsw.ASE.app.services.ServicesKanban;
 
 public class ServicesKanbanTest {
@@ -28,12 +26,6 @@ public class ServicesKanbanTest {
 
     @Mock
     private RepositoryPostit repoPostit;
-
-    @Mock
-    private RepositoryUsuario repoUsuario;
-
-    @Mock
-    private RepositoryUsuarioXKanban repoUsuarioXKanban;
 
     @InjectMocks
     private ServicesKanban servicesKanban;
