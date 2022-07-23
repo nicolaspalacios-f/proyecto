@@ -128,4 +128,4 @@ $ mvn spring-boot:run
 
 #### Diagrama de Repository.
 
-<img src='imagen/diagrama Repository.png'>
+<img src='imagen/diagrama repository.png'>
